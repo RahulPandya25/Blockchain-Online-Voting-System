@@ -38,4 +38,6 @@ function onConnection(socket) {
 
 io.on("connection", onConnection);
 
+app.use("*", express.static(path.join(__dirname, ANGULAR_BUNDLE)));
+
 module.exports = app;
