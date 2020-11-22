@@ -31,7 +31,13 @@
 
     <div class="content" *ngIf="!isLoading">
       [ <br />
-      <div class="block" *ngFor="let block of blockChain.blockchain">
+      <div
+        class="block"
+        [ngClass]="{
+          updated: block.updated
+        }"
+        *ngFor="let block of blockChain.blockchain"
+      >
         &nbsp;&nbsp;&nbsp;<span class="lime">&#123;</span><br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="red">timestamp:</span>
         {{ block.timestamp }},
@@ -58,7 +64,8 @@
     </div>
 
     <div class="btns">
-      <!-- <button (click)="checkValidity()">Check Validity</button> -->
+      <button (click)="updateRandomBlock()">Update Random Block</button>
+      <button (click)="checkValidity()">Check Validity</button>
       <button
         (click)="decrypt()"
         [ngClass]="{

@@ -5,7 +5,7 @@ import { AES, enc } from "crypto-js";
   providedIn: "root",
 })
 export class CommonService {
-  public static KEY = "THIS_IS_KEY";
+  public static KEY = "I am Secret!";
 
   public static decryptData(cipher) {
     // decryption

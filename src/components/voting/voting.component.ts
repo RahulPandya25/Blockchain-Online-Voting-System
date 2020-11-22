@@ -75,6 +75,17 @@ export class VotingComponent implements OnInit {
     }
   }
 
+  updateRandomBlock() {
+    var randomBlockIndex = Math.floor(
+      Math.random() * (this.blockChain.blockchain.length + 1)
+    );
+    this.blockChain.blockchain[randomBlockIndex].hash =
+      "abcdefghijklmnopqrstuvwxyz";
+    this.blockChain.blockchain[randomBlockIndex].updated = true;
+
+    console.log("done");
+  }
+
   constructor(
     private route: ActivatedRoute,
     public commonService: CommonService

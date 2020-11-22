@@ -83,6 +83,11 @@
       .blue {
         color: var(--blue-accent);
       }
+
+      .updated {
+        background-color: rgba(250, 193, 193, 0.596);
+        border-radius: 5px;
+      }
     }
     .errorMsg {
       background-color: var(--pale-green);

@@ -12,6 +12,13 @@ export class CryptoBlock {
       this.precedingHash + this.timestamp + JSON.stringify(this.data)
     ).toString();
   }
+  computeHashForValidity() {
+    return SHA256(
+      this.precedingHash +
+        this.timestamp +
+        JSON.stringify(CommonService.decryptData(this.data))
+    ).toString();
+  }
 
   encryptData(data) {
     return AES.encrypt(data, CommonService.KEY);

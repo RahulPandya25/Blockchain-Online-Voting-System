@@ -32,7 +32,7 @@ export class CryptoBlockChain {
       const currentBlock = this.blockchain[i];
       const precedingBlock = this.blockchain[i - 1];
 
-      if (currentBlock.hash !== currentBlock.computeHash()) {
+      if (currentBlock.hash !== currentBlock.computeHashForValidity()) {
         return false;
       }
       if (currentBlock.precedingHash !== precedingBlock.hash) return false;
