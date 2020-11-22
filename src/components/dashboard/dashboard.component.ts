@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
+import { Router } from "@angular/router";
 import { CommonService } from "src/services/common.service";
 import { CryptoBlockChain } from "../../classes/crypto-block-chain";
 
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit {
   currentTags = [];
   errorMessage = "";
   showErrorMessage = false;
-  constructor() {}
+  constructor(private router: Router) {}
 
   addBlock(data) {
     console.log(data);
@@ -31,9 +32,11 @@ export class DashboardComponent implements OnInit {
   }
 
   addTag(e) {
-    if (!_.includes(this.currentTags, e.target.value))
-      this.currentTags.push(e.target.value);
-    e.target.value = "";
+    if (e.target.value != "") {
+      if (!_.includes(this.currentTags, e.target.value))
+        this.currentTags.push(e.target.value);
+      e.target.value = "";
+    }
   }
   removeTag(tag) {
     _.remove(this.currentTags, function (element) {
@@ -50,6 +53,10 @@ export class DashboardComponent implements OnInit {
         };
 
         console.log(info);
+
+        this.router.navigate(["/vote"], {
+          queryParams: info,
+        });
       } else {
         this.errorMessage = "Add atleast 2 Nominee";
         this.showErrorMessage = true;
