@@ -11,13 +11,13 @@
   .title {
     font-size: 1.75em;
     margin: 0.25rem 1rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding: 0.15rem 0.2rem;
   }
 
   .voting {
     width: var(--voting-area);
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
 
     .content {
       font-size: 1.2em;
@@ -32,6 +32,14 @@
     .label {
       font-size: 0.9em;
       margin: 0.5rem 0;
+    }
+
+    .id-input {
+      width: 100%;
+      input {
+        width: 100%;
+        padding: 0.15rem 0.25rem;
+      }
     }
 
     .nominee {
@@ -53,5 +61,28 @@
 
   .blockchain {
     width: calc(100vw - var(--voting-area));
+
+    .content {
+      padding: 0.5rem 1rem;
+
+      .green {
+        color: var(--green-accent);
+      }
+      .orange {
+        color: var(--orange-accent);
+      }
+      .yellow {
+        color: var(--yellow-accent);
+      }
+      .lime {
+        color: var(--lime-accent);
+      }
+      .red {
+        color: var(--red-accent);
+      }
+      .blue {
+        color: var(--blue-accent);
+      }
+    }
   }
 }

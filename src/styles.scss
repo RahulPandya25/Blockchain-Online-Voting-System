@@ -19,6 +19,7 @@ body {
     background-color: var(--teal-accent);
     border-radius: 10px;
   }
+  overflow-x: hidden;
 }
 // device sizes
 $breakpoint-mobile: 480px;

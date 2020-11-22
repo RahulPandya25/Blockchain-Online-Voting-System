@@ -24,5 +24,27 @@
       <button (click)="submitVote(textbox.value)">Next Vote</button>
     </div>
   </div>
-  <div class="section blockchain"><div class="title">Blockchain</div></div>
+  <div class="section blockchain">
+    <div class="title">Blockchain</div>
+    <div class="content">
+      [ <br />
+      <div class="block" *ngFor="let block of blockChain.blockchain">
+        &nbsp;&nbsp;&nbsp;<span class="lime">&#123;</span><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="red">timestamp:</span>
+        {{ block.timestamp }},
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="blue">data:</span>
+        {{ block.data }},
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="green">precedingHash:</span> {{ block.precedingHash }},
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="yellow">hash:</span>
+        {{ block.hash }} <br />&nbsp;&nbsp;&nbsp;<span class="lime"
+          >&#125;,</span
+        >
+      </div>
+      ]
+    </div>
+  </div>
 </div>
