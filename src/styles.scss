@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: var(--dark);
+}
+
+body {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--teal-accent);
+    border-radius: 10px;
+  }
+}
+// device sizes
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 765px;
+$breakpoint-desktop: 1024px;
+
+//mobile
+@media only screen and (max-width: $breakpoint-mobile) {
+  *,
+  *::before,
+  *::after {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+//tablet
+@media only screen and (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet) {
+  *,
+  *::before,
+  *::after {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+//laptop
+@media only screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+}
+// desktop
+@media screen and (min-width: $breakpoint-desktop) {
+}
+
+:root {
+  --pale-blue-green: #ecfaf5;
+  --pale-green: #dcf8c6;
+  --pale-yellow: #fff5c4;
+  --pale-red: #f79c9f;
+  --pale-blue: #e1f3fb;
+  --blue-ocean: #aadaff;
+  --pale-white: #f9f9f9;
+  --pale-grey: #f0f0f0;
+  --green: #35d371;
+
+  --lime-accent: #9acb34;
+  --teal-accent: #45ada8;
+  --blue-accent: #4285f4;
+  --yellow-accent: #fce100;
+  --green-accent: #16c60c;
+  --orange-accent: #f7630c;
+  --red-accent: #e81224;
+  --dark: #363e4b;
+  --medium: #3c4758;
+  --light: #fbf8ef;
+  --black: #0a112877;
+
+  --icon-clr-1: #2d9cdb;
+
+  --emboss: 6px 6px 10px rgba(0, 0, 0, 0.1),
+    -6px -6px 10px rgba(255, 255, 255, 0.8);
+  --deboss: inset 6px 6px 10px rgba(0, 0, 0, 0.1),
+    inset -6px -6px 10px rgba(255, 255, 255, 0.8);
+
+  --max-section-width: 700px;
+}
+
+.fa::before,
+.far::before,
+.fas::before {
+  font-style: normal;
+  font-family: "Font Awesome 5 Free";
+}
+
+// global container
+.container {
+  margin-top: 0.75rem;
+}
+
+.app-title {
+  font-family: "Pacifico", cursive;
+}

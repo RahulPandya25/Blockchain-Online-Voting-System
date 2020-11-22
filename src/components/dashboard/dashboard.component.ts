@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import * as _ from "lodash";
 import { CommonService } from "src/services/common.service";
 import { CryptoBlockChain } from "../../classes/crypto-block-chain";
 
@@ -11,6 +12,9 @@ export class DashboardComponent implements OnInit {
   blockChain: CryptoBlockChain;
   textValue: String;
   data = [];
+  currentTags = [];
+  errorMessage = "";
+  showErrorMessage = false;
   constructor() {}
 
   addBlock(data) {
@@ -23,6 +27,36 @@ export class DashboardComponent implements OnInit {
       const element = this.blockChain.blockchain[index];
 
       this.data.push(CommonService.decryptData(element.data));
+    }
+  }
+
+  addTag(e) {
+    if (!_.includes(this.currentTags, e.target.value))
+      this.currentTags.push(e.target.value);
+    e.target.value = "";
+  }
+  removeTag(tag) {
+    _.remove(this.currentTags, function (element) {
+      return element === tag;
+    });
+  }
+
+  submit(text) {
+    if (text != "") {
+      if (this.currentTags.length > 1) {
+        let info = {
+          reason: text,
+          nominations: this.currentTags,
+        };
+
+        console.log(info);
+      } else {
+        this.errorMessage = "Add atleast 2 Nominee";
+        this.showErrorMessage = true;
+      }
+    } else {
+      this.errorMessage = "Please tell us what is this voting for?";
+      this.showErrorMessage = true;
     }
   }
 
