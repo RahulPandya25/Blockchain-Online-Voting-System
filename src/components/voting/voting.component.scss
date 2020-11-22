@@ -1,0 +1,57 @@
+.main {
+  --voting-area: 300px;
+
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  section {
+    min-height: 100vh;
+  }
+
+  .title {
+    font-size: 1.75em;
+    margin: 0.25rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.15rem 0.2rem;
+  }
+
+  .voting {
+    width: var(--voting-area);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+    .content {
+      font-size: 1.2em;
+      padding: 0 0.5rem;
+    }
+
+    .reason {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .label {
+      font-size: 0.9em;
+      margin: 0.5rem 0;
+    }
+
+    .nominee {
+      padding: 0 1.25rem;
+      input {
+        margin: 0 0.5rem;
+      }
+    }
+    .submit {
+      button {
+        margin-top: 2rem;
+        margin-left: 50%;
+        font-size: 0.7em;
+        padding: 0.2rem 0.3rem;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  .blockchain {
+    width: calc(100vw - var(--voting-area));
+  }
+}

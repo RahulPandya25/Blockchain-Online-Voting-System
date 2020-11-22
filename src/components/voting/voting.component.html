@@ -1,1 +1,28 @@
-<p>voting works!</p>
+<div class="main">
+  <div class="section voting">
+    <div class="title">Voting</div>
+    <div class="content reason">{{ reason }}</div>
+
+    <div class="content label">ID.</div>
+    <div class="content id-input">
+      <input type="text" name="id-input" id="id-input" #textbox />
+    </div>
+
+    <div class="content label">options.</div>
+    <div class="content nominee" *ngFor="let nominee of nominations">
+      <input
+        type="radio"
+        name="answer"
+        id="{{ nominee }}"
+        value="{{ nominee }}"
+        (change)="choice = nominee"
+      />
+      <label for="{{ nominee }}">{{ nominee }}</label>
+    </div>
+
+    <div class="content submit">
+      <button (click)="submitVote(textbox.value)">Next Vote</button>
+    </div>
+  </div>
+  <div class="section blockchain"><div class="title">Blockchain</div></div>
+</div>
