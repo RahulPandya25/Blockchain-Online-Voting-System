@@ -26,7 +26,10 @@
   </div>
   <div class="section blockchain">
     <div class="title">Blockchain</div>
-    <div class="content">
+
+    <app-loading *ngIf="isLoading"></app-loading>
+
+    <div class="content" *ngIf="!isLoading">
       [ <br />
       <div class="block" *ngFor="let block of blockChain.blockchain">
         &nbsp;&nbsp;&nbsp;<span class="lime">&#123;</span><br />
@@ -45,6 +48,33 @@
         >
       </div>
       ]
+    </div>
+
+    <div *ngIf="showErrorMessage" class="errorMsg">
+      <span class="msg">{{ errorMessage }}</span>
+      <button class="closeMsg" (click)="showErrorMessage = !showErrorMessage">
+        x
+      </button>
+    </div>
+
+    <div class="btns">
+      <!-- <button (click)="checkValidity()">Check Validity</button> -->
+      <button
+        (click)="decrypt()"
+        [ngClass]="{
+          active: isDecryptOn
+        }"
+      >
+        Decrypt
+      </button>
+      <button
+        (click)="encrypt()"
+        [ngClass]="{
+          active: !isDecryptOn
+        }"
+      >
+        Encrypt
+      </button>
     </div>
   </div>
 </div>

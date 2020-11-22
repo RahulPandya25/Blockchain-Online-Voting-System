@@ -7,7 +7,11 @@ export class CryptoBlockChain {
     this.blockchain = [this.startGenesisBlock()];
   }
   startGenesisBlock() {
-    return new CryptoBlock(new Date(), "Initial Block in the Chain", "0");
+    return new CryptoBlock(
+      new Date(),
+      "Initial Block in the Chain - Genesis Block",
+      "0"
+    );
   }
   obtainLatestBlock() {
     return this.blockchain[this.blockchain.length - 1];

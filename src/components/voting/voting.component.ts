@@ -9,12 +9,17 @@ import { CommonService } from "src/services/common.service";
   styleUrls: ["./voting.component.scss"],
 })
 export class VotingComponent implements OnInit {
+  waitTime = 1500;
   reason;
   nominations;
   choice;
-
+  errorMessage = "";
+  showErrorMessage = false;
+  isLoading = false;
+  isDecryptOn = false;
   blockChain: CryptoBlockChain;
   data = [];
+  encryptedChain: CryptoBlockChain;
 
   submitVote(id) {
     if (id != "" && this.choice != undefined) {
@@ -23,23 +28,57 @@ export class VotingComponent implements OnInit {
         vote: this.choice,
       };
       this.blockChain.addData(JSON.stringify(data));
+      this.encryptedChain = Object.assign(this.blockChain);
+      console.log(this.encryptedChain);
+      console.log(this.blockChain);
     }
   }
 
-  addBlock(data) {
-    console.log(data);
-    this.blockChain.addData(data);
-  }
+  async decrypt() {
+    this.isLoading = true;
+    await this.delay(this.waitTime);
+    this.isLoading = false;
 
-  decrypt() {
-    for (let index = 1; index < this.blockChain.blockchain.length; index++) {
+    for (let index = 0; index < this.blockChain.blockchain.length; index++) {
       const element = this.blockChain.blockchain[index];
+      const decryptedData = CommonService.decryptData(element.data);
+      this.blockChain.blockchain[index].data = decryptedData;
+    }
+    this.isDecryptOn = true;
+    console.log("done");
+    console.log(this.encryptedChain);
+    console.log(this.blockChain);
+  }
 
-      this.data.push(CommonService.decryptData(element.data));
+  async encrypt() {
+    this.isLoading = true;
+    await this.delay(this.waitTime);
+    this.isLoading = false;
+
+    this.blockChain = new CryptoBlockChain();
+    this.blockChain = Object.assign(this.encryptedChain);
+    this.isDecryptOn = false;
+    console.log("done");
+  }
+
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  checkValidity() {
+    if (this.blockChain.checkChainValidity()) {
+      this.errorMessage = "Congrats! Blockchain is Valid!";
+      this.showErrorMessage = true;
+    } else {
+      this.errorMessage = "Oops! Blockchain is Invalid!";
+      this.showErrorMessage = true;
     }
   }
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    public commonService: CommonService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -48,5 +87,6 @@ export class VotingComponent implements OnInit {
     });
 
     this.blockChain = new CryptoBlockChain();
+    this.encryptedChain = new CryptoBlockChain();
   }
 }
