@@ -8,16 +8,7 @@ export class CryptoBlock {
   hash;
 
   computeHash() {
-    return SHA256(
-      this.precedingHash + this.timestamp + JSON.stringify(this.data)
-    ).toString();
-  }
-  computeHashForValidity() {
-    return SHA256(
-      this.precedingHash +
-        this.timestamp +
-        JSON.stringify(CommonService.decryptData(this.data))
-    ).toString();
+    return SHA256(this.precedingHash + this.timestamp + this.data).toString();
   }
 
   encryptData(data) {
@@ -27,7 +18,7 @@ export class CryptoBlock {
   constructor(timestamp, data, precedingHash = " ") {
     this.timestamp = timestamp;
     this.precedingHash = precedingHash;
-    this.hash = this.computeHash();
     this.data = this.encryptData(data);
+    this.hash = this.computeHash();
   }
 }
