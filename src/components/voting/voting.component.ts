@@ -17,6 +17,7 @@ export class VotingComponent implements OnInit {
   showErrorMessage = false;
   isLoading = false;
   isDecryptOn = false;
+  decDone = false;
   blockChain: CryptoBlockChain;
   data = [];
   encryptedChain: CryptoBlockChain;
@@ -38,6 +39,8 @@ export class VotingComponent implements OnInit {
     this.isLoading = true;
     await this.delay(this.waitTime);
     this.isLoading = false;
+
+    this.decDone = true;
 
     for (let index = 0; index < this.blockChain.blockchain.length; index++) {
       const element = this.blockChain.blockchain[index];

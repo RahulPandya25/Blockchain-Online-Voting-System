@@ -64,8 +64,22 @@
     </div>
 
     <div class="btns">
-      <button (click)="updateRandomBlock()">Update Random Block</button>
-      <button (click)="checkValidity()">Check Validity</button>
+      <button
+        [ngClass]="{
+          active: decDone
+        }"
+        (click)="updateRandomBlock()"
+      >
+        Update Random Block
+      </button>
+      <button
+        [ngClass]="{
+          active: decDone
+        }"
+        (click)="checkValidity()"
+      >
+        Check Validity
+      </button>
       <button
         (click)="decrypt()"
         [ngClass]="{
